@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #212121;
+  color: #ececec;
+}
+
+body {
+  font-family: var(--font-sans), "Segoe UI", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-heb), var(--font-sans), "Segoe UI", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #383838;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4a4a4a;
+}
+
+@layer components {
+  .idf-chip {
+    @apply inline-flex items-center rounded-chip border border-card-border bg-card px-3.5 py-1.5
+           text-sm text-text transition hover:border-primary hover:text-primary;
+  }
+  .idf-chip[data-active="true"] {
+    @apply border-primary text-primary;
+  }
+
+  .idf-card {
+    @apply rounded-[10px] border border-card-border bg-card p-4 transition
+           hover:-translate-y-0.5 hover:border-primary;
+  }
+
+  .idf-btn {
+    @apply inline-flex items-center justify-center rounded-lg px-3.5 py-2 text-sm font-medium
+           transition disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .idf-btn-primary {
+    @apply idf-btn bg-primary text-white hover:bg-primary-hover;
+  }
+  .idf-btn-secondary {
+    @apply idf-btn border border-card-border bg-card text-text hover:border-primary hover:text-primary;
+  }
+  .idf-btn-ghost {
+    @apply idf-btn text-text hover:bg-card;
+  }
+
+  .idf-badge {
+    @apply inline-block rounded-pill border border-primary/40 bg-primary-soft px-2 py-0.5 text-[11px] leading-4 text-primary;
+  }
+
+  .idf-input {
+    @apply w-full rounded-search border border-card-border bg-card px-5 py-3.5 text-base text-text
+           placeholder:text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary-ring;
+  }
+
+  .idf-textarea {
+    @apply w-full rounded-xl border border-card-border bg-card px-4 py-3 font-mono text-sm text-text
+           placeholder:text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary-ring;
+  }
+
+  .idf-select {
+    @apply w-full rounded-lg border border-card-border bg-card px-3 py-2 text-sm text-text
+           focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary-ring;
+  }
+
+  .idf-link {
+    @apply text-primary hover:underline;
+  }
+
+  .idf-hero-title {
+    @apply bg-gradient-to-l from-[#6ecfb0] to-primary bg-clip-text text-transparent;
+  }
+
+  .idf-meta-row {
+    @apply flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-muted;
+  }
+
+  .idf-table-wrap {
+    @apply overflow-x-auto rounded-lg border border-card-border;
+  }
+  .idf-table {
+    @apply w-full border-collapse text-sm;
+  }
+  .idf-table th {
+    @apply sticky top-0 border-b border-card-border bg-bg-alt px-3 py-2 text-start font-semibold text-text;
+  }
+  .idf-table td {
+    @apply border-b border-card-border/60 px-3 py-1.5 align-top;
+  }
+  .idf-table tbody tr:hover {
+    @apply bg-bg-alt/60;
+  }
+}
