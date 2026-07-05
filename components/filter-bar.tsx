@@ -12,7 +12,9 @@ interface Props {
   onChange: (patch: Partial<{ org: string | null; format: string | null; tags: string[] }>) => void;
 }
 
-const FORMATS = ["CSV", "XLS", "XLSX", "JSON", "API", "PDF"];
+// Exact res_format facet values on data.gov.il, ordered by dataset count.
+// Solr fq matching is case-sensitive — "GeoJSON" must keep its mixed case.
+const FORMATS = ["CSV", "XLSX", "XLS", "JSON", "GeoJSON", "XML", "ZIP", "PDF"];
 
 export function FilterBar({ org, format, tags, onChange }: Props) {
   const lang = useUi((s) => s.lang);

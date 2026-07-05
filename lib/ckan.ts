@@ -93,7 +93,12 @@ export async function searchDatasets({
   const fq: string[] = [];
   if (org) fq.push(`organization:"${org}"`);
   if (tags?.length) for (const t of tags) fq.push(`tags:"${t}"`);
-  if (format) fq.push(`res_format:"${format.toUpperCase()}"`);
+  if (format) {
+    // Solr fq is case-sensitive and data.gov.il stores mixed-case values
+    // (e.g. "GeoJSON") — match the exact value plus common case variants.
+    const variants = [...new Set([format, format.toUpperCase(), format.toLowerCase()])];
+    fq.push(`(${variants.map((v) => `res_format:"${v}"`).join(" OR ")})`);
+  }
 
   return ckanGet<CkanSearchResult>(
     "package_search",
