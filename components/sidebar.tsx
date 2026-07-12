@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Star, Code2, Info, Clock, Trash2 } from "lucide-react";
+import { Search, Star, Code2, Info, Clock, Trash2, BarChart3 } from "lucide-react";
 import { useUi } from "@/lib/store";
 import { t } from "@/lib/i18n";
 import { LanguageToggle } from "./language-toggle";
 import { cn } from "@/lib/utils";
 
-const NAV: { href: string; key: "home_nav" | "popular_nav" | "sql_nav" | "about_nav"; Icon: typeof Search }[] = [
+const NAV: { href: string; key: "home_nav" | "popular_nav" | "cbs_nav" | "sql_nav" | "about_nav"; Icon: typeof Search }[] = [
   { href: "/", key: "home_nav", Icon: Search },
   { href: "/popular", key: "popular_nav", Icon: Star },
+  { href: "/cbs", key: "cbs_nav", Icon: BarChart3 },
   { href: "/sql", key: "sql_nav", Icon: Code2 },
   { href: "/about", key: "about_nav", Icon: Info },
 ];
@@ -76,10 +77,13 @@ export function Sidebar() {
         </div>
       )}
 
-      <div className="mt-auto rounded-lg border border-card-border p-3 text-[11px] text-muted">
-        <div className="font-medium text-text">{t("cbs_coming_soon", lang)}</div>
+      <Link
+        href="/cbs"
+        className="mt-auto rounded-lg border border-card-border p-3 text-[11px] text-muted transition hover:border-primary/50 hover:bg-card"
+      >
+        <div className="font-medium text-primary">{t("cbs_now_live", lang)}</div>
         <div className="mt-1 leading-4">{t("cbs_description", lang)}</div>
-      </div>
+      </Link>
     </aside>
   );
 }
