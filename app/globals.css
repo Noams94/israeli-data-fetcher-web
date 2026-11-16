@@ -23,16 +23,24 @@ html[dir="rtl"] body {
   font-family: var(--font-heb), var(--font-sans), "Segoe UI", sans-serif;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+:root {
+  --scrollbar-thumb: #383838;
+  /* Inherited, so it applies to every scroller on the page. */
+  scrollbar-color: var(--scrollbar-thumb) transparent;
 }
-::-webkit-scrollbar-thumb {
-  background-color: #383838;
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: #4a4a4a;
+/* Legacy fallback for browsers without standard scrollbar-color (Safari < 26.2). */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #4a4a4a;
+  }
 }
 
 @layer components {
